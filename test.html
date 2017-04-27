@@ -1,0 +1,73 @@
+
+<input type="text" id="addFood" />
+
+
+<input type="submit" value="Add to food list" onClick="addToFood();">
+ 
+<div id="foods"></div>
+
+<script>
+
+
+
+function get_food() {
+    var foodList = new Array;
+    var food_str = localStorage.getItem('foodz');
+    if (food_str !== null) {
+        foodList = JSON.parse(food_str); 
+    }
+    return foodList;
+}
+
+function addToFood () {
+var newFood = "";
+    var addFood = document.getElementById('addFood').value;
+	var foodList = get_food();
+    foodList.push(addFood);
+	localStorage.setItem('foodz', JSON.stringify(foodList));
+foodList = get_food();
+    for (i = 0; i < foodList.length; i++)   {
+        newFood += "<a href='#' onClick='removeRecord(" + i + ");'>X</a> " + foodList[i] + " <br>";
+    };
+    document.getElementById('foods').innerHTML = newFood;
+	
+}
+
+
+function removeRecord (i) {
+
+ 
+    var j = i;
+
+    
+    var tempList = [];
+
+
+    var newFood = "";
+    for (var i = 0; i < foodList.length; i++) {
+        if(i != j) {
+
+  
+            tempList.push(foodList[i]);
+        } 
+    };
+
+
+    foodList = tempList;
+localStorage.setItem('foodz', JSON.stringify(foodList));
+ 
+foodList = get_food();
+    for (i = 0; i < foodList.length; i++)   {
+        newFood += "<a href='#' onClick='removeRecord(" + i + ");'>X</a> " + foodList[i] + " <br>";
+    };
+    document.getElementById('foods').innerHTML = newFood;
+}
+
+// Display list
+var foodList = get_food();
+var newFood = "";
+    for (i = 0; i < foodList.length; i++)   {
+        newFood += "<a href='#' onClick='removeRecord(" + i + ");'>X</a> " + foodList[i] + " <br>";
+    };
+    document.getElementById('foods').innerHTML = newFood;
+</script>
