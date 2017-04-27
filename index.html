@@ -53,10 +53,11 @@ function removeRecord (i) {
     };
 
 
-    foodList = tempList;
-localStorage.setItem('foodz', JSON.stringify(foodList));
- 
-foodList = get_food();
+    
+localStorage.setItem('foodz', JSON.stringify(tempList));
+tempList = get_food();
+foodList = tempList;
+	
     for (i = 0; i < foodList.length; i++)   {
         newFood += "<a href='#' onClick='removeRecord(" + i + ");'>X</a> " + foodList[i] + " <br>";
     };
