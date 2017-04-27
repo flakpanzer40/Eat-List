@@ -30,7 +30,7 @@ foodList = get_food();
         newFood += "<a href='#' onClick='removeRecord(" + i + ");'>X</a> " + foodList[i] + " <br>";
     };
     document.getElementById('foods').innerHTML = newFood;
-	
+location.reload();	
 }
 
 
@@ -57,7 +57,7 @@ function removeRecord (i) {
 localStorage.setItem('foodz', JSON.stringify(tempList));
 tempList = get_food();
 foodList = tempList;
-location.reload();	
+	
     for (i = 0; i < foodList.length; i++)   {
         newFood += "<a href='#' onClick='removeRecord(" + i + ");'>X</a> " + foodList[i] + " <br>";
     };
